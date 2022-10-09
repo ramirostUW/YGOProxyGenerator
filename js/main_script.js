@@ -105,7 +105,7 @@ function getImageUrl(cardNameOrId){
 			var data = JSON.parse(result);
 			console.log('requesting result');
 			console.log(data);
-			return requestArrayBuffer(data.data[0].card_images[0].image_url);
+			return requestArrayBuffer(data.data[0].card_images[0].image_url.replace('https://images.ygoprodeck.com/images/cards/', 'https://raw.githubusercontent.com/ramirostUW/YGOProxyGenerator/master/images/'));
 		});
 	};
 }
@@ -158,7 +158,8 @@ function generateProxies(){
 	overallProcess = overallProcess
 		.then(()=>{
 			if(failedLines.length != 0){
-				var error_message = "could not process following lines: \n";
+				console.log("poop")
+				var error_message = "could not process, for some very awful reason, following lines: \n";
 				failedLines.forEach(line => error_message = error_message + "\n" + line);
 				alert(error_message);
 			}})
